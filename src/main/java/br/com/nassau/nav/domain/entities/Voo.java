@@ -1,37 +1,29 @@
-package br.com.nassau.nav.entities;
+package br.com.nassau.nav.domain.entities;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
-@Table(name = "VOO")
-@Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Voo {
 
-    @Id
+    private CiaArea ciaAerea;
+
     private String numero;
 
-    @Column
     private String origem;
 
-    @Column
     private String destino;
 
-    @Column
     private LocalDateTime dataHora;
 
-    @Column
     private BigDecimal valor;
 
 }
