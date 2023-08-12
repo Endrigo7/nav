@@ -1,0 +1,78 @@
+{
+	"info": {
+		"_postman_id": "b71d589e-cd24-4ad1-ab70-da042c35f264",
+		"name": "NAV",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "voo-listar-todos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"origem\":\"rec\",\n    \"destino\":\"con\",\n    \"data\":\"2023-11-09\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/voo/listar-todos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"voo",
+						"listar-todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cia-area-listar-todos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cia-area/listar-todos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cia-area",
+						"listar-todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cia-area-buscar-por-id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cia-area/0f8c2d20-6d56-4a4e-968e-41052143777f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cia-area",
+						"0f8c2d20-6d56-4a4e-968e-41052143777f"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
