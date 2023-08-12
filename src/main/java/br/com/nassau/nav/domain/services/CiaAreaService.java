@@ -33,9 +33,15 @@ public class CiaAreaService {
         return toCiaArea(ciaAreaJpa);
     }
 
-    public List<CiaArea> listarTodos() {
-        System.out.println(ciaAreaRepository.findAll());
+    public List<CiaArea> buscarPorNome(String nome){
+        return ciaAreaRepository
+                .findByNome(nome.toUpperCase())
+                .stream()
+                .map(this::toCiaArea)
+                .collect(Collectors.toList());
+    }
 
+    public List<CiaArea> listarTodos() {
         return ciaAreaRepository
                 .findAll()
                 .stream()

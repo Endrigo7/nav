@@ -18,10 +18,17 @@ public class CiaAreaController {
     @Autowired
     private CiaAreaService ciaAreaService;
 
+    @Deprecated
     @GetMapping("/{id}")
-    public ResponseEntity<CiaArea> buscarPorCodigo(@PathVariable String id){
+    public ResponseEntity<CiaArea> buscarPorId(@PathVariable String id){
         CiaArea ciaArea = ciaAreaService.buscarPorId(id);
         return ResponseEntity.ok().body(ciaArea);
+    }
+
+    @GetMapping("/{nome}")
+    public ResponseEntity<List<CiaArea>> buscarPorNome(@PathVariable String nome){
+        List<CiaArea> ciasArea = ciaAreaService.buscarPorNome(nome);
+        return ResponseEntity.ok().body(ciasArea);
     }
 
     @GetMapping("/listar-todos")
