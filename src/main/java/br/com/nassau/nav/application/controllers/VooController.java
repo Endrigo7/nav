@@ -1,5 +1,6 @@
 package br.com.nassau.nav.application.controllers;
 
+import br.com.nassau.nav.domain.services.BuscarVoo;
 import br.com.nassau.nav.domain.entities.Voo;
 import br.com.nassau.nav.domain.services.VooService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,11 @@ public class VooController {
     @Autowired
     private VooService vooService;
 
-    @PostMapping("/listar")
-    private ResponseEntity<List<Voo>> listar(){
-        return null;
+    @PostMapping("/listar-todos")
+    private ResponseEntity<List<Voo>> listar(@RequestBody BuscarVoo buscarVoo){
+
+        List<Voo> voos = vooService.listarTodosOsVoos(buscarVoo);
+
+        return ResponseEntity.ok().body(voos);
     }
 }

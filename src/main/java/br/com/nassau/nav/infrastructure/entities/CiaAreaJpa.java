@@ -19,7 +19,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CiaAreaJpa {
     @Id
-    private UUID id;
+    private String id;
 
     @Column
     private String nome;

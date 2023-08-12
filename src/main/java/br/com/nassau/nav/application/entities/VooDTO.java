@@ -1,5 +1,6 @@
-package br.com.nassau.nav.domain.entities;
+package br.com.nassau.nav.application.entities;
 
+import br.com.nassau.nav.domain.entities.CiaArea;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,9 +13,9 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Voo {
+public class VooDTO {
 
-    private CiaArea ciaAerea;
+    private String ciaAerea;
 
     private String numero;
 
@@ -24,8 +25,6 @@ public class Voo {
 
     private LocalDateTime dataHora;
 
-    private BigDecimal valorCiaArea;
-
-    private BigDecimal valorNav;
+    private BigDecimal valor;
 
 }

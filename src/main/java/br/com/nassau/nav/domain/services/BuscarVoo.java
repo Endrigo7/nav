@@ -1,31 +1,22 @@
-package br.com.nassau.nav.domain.entities;
+package br.com.nassau.nav.domain.services;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Voo {
-
-    private CiaArea ciaAerea;
-
-    private String numero;
+public class BuscarVoo {
 
     private String origem;
 
     private String destino;
 
-    private LocalDateTime dataHora;
-
-    private BigDecimal valorCiaArea;
-
-    private BigDecimal valorNav;
-
+    private LocalDate data;
 }
