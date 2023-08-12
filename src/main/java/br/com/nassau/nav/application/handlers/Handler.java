@@ -2,7 +2,6 @@ package br.com.nassau.nav.application.handlers;
 
 import br.com.nassau.nav.domain.exceptions.CiaAreaNaoEncontradaException;
 import br.com.nassau.nav.domain.exceptions.VooNaoEncontradoException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

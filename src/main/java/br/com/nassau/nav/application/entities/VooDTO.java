@@ -1,6 +1,5 @@
 package br.com.nassau.nav.application.entities;
 
-import br.com.nassau.nav.domain.entities.CiaArea;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
