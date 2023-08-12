@@ -25,7 +25,7 @@ public class CiaAreaController {
         return ResponseEntity.ok().body(ciaArea);
     }
 
-    @GetMapping("/{nome}")
+    @GetMapping("/buscar-nome/{nome}")
     public ResponseEntity<List<CiaArea>> buscarPorNome(@PathVariable String nome){
         List<CiaArea> ciasArea = ciaAreaService.buscarPorNome(nome);
         return ResponseEntity.ok().body(ciasArea);
