@@ -1,4 +1,4 @@
-package br.com.nassau.nav.domain.services;
+package br.com.nassau.nav.domain.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

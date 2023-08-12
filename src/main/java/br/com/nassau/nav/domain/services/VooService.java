@@ -1,5 +1,6 @@
 package br.com.nassau.nav.domain.services;
 
+import br.com.nassau.nav.domain.entities.BuscarVoo;
 import br.com.nassau.nav.domain.entities.CiaArea;
 import br.com.nassau.nav.domain.entities.Voo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
