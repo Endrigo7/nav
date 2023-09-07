@@ -40,9 +40,9 @@ class NavApplicationTests {
         CiaArea[] valorEsperado = {};
 
         CiaArea[] valorAtual =  when()
-                .get("/cia-area/buscar-nome/{nome}", "TAP")
-                .then()
-                .extract().as(CiaArea[].class);
+                                    .get("/cia-area/buscar-nome/{nome}", "TAP")
+                                .then()
+                                    .extract().as(CiaArea[].class);
 
         assertArrayEquals(valorEsperado, valorAtual);
     }
