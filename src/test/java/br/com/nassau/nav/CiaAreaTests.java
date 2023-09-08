@@ -1,19 +1,19 @@
 package br.com.nassau.nav;
 
 import br.com.nassau.nav.domain.entities.CiaArea;
+import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
-
 import java.util.UUID;
 
-import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.when;
+import static io.restassured.RestAssured.*;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
+@WireMockTest
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class NavApplicationTests {
+class CiaAreaTests {
 
     @LocalServerPort
     private int porta;
@@ -28,7 +28,6 @@ class NavApplicationTests {
     public void clean(){
         RestAssured.reset();
     }
-
 
     /*
      * Given que nao existem cias areas com o nome TAP
@@ -58,10 +57,8 @@ class NavApplicationTests {
         CiaArea[] valorEsperado = {CiaArea.builder()
                                     .id(UUID.fromString("5f97340c-73e5-449f-b4cd-7be459535be4"))
                                     .nome("LATAM")
-                                    .endpointListaVoos("http://127.0.0.1/latam/listar-todos")
+                                    .endpointListaVoos("http://127.0.0.1:8080/latam/listar-todos")
                                     .build()};
-
-
 
         CiaArea[] valorAtual =  when()
                                     .get("/cia-area/buscar-nome/{nome}", "LATAM")

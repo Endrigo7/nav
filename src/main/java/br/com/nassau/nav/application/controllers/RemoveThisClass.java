@@ -25,12 +25,12 @@ public class RemoveThisClass {
                                 .build();
 
         VooInfra voo2 = VooInfra.builder()
-                .numero("AZ-2398")
-                .origem("REC")
-                .destino("SPO")
-                .dataHora(LocalDateTime.now())
-                .valor(new BigDecimal(150))
-                .build();
+                                    .numero("AZ-2398")
+                                    .origem("REC")
+                                    .destino("SPO")
+                                    .dataHora(LocalDateTime.now())
+                                    .valor(new BigDecimal(150))
+                                .build();
 
         List<VooInfra> voos = Arrays.asList(voo1, voo2);
 

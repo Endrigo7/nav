@@ -55,6 +55,7 @@ public class VooService {
 
         for (CiaArea ciaArea : ciaAreaService.listarTodos()) {
             List<Voo> voosEncontrados = vooPorCiaAreaService.getVoo(ciaArea);
+            voosEncontrados.forEach(System.out::println);
 
             voosEncontrados.forEach(voo -> voo.setValorNav(voo.getValorCiaArea()
                                                             .multiply(new BigDecimal(valorComissao)
