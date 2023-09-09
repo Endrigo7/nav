@@ -1,18 +1,266 @@
 {
 	"info": {
-		"_postman_id": "b71d589e-cd24-4ad1-ab70-da042c35f264",
-		"name": "NAV",
+		"_postman_id": "a9e73225-cdb6-4135-83c7-47d6d364534d",
+		"name": "NAV-Application-End-To-End",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "voo-listar-todos",
+			"name": "cia-area-buscar-por-id-gol",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/* ",
+							" * GIVEN uma cia-aerea cadastrada",
+							" * WHEN consultar por ID",
+							" * Then retorna a cia-aerea",
+							" */",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Nome da cia-aerea deve ser GOL\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(\"GOL\").to.eql(jsonData.nome);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_server}}/cia-area/e5c1be28-a5d7-48d5-a7e9-c9ed3a0e4217",
+					"host": [
+						"{{url_server}}"
+					],
+					"path": [
+						"cia-area",
+						"e5c1be28-a5d7-48d5-a7e9-c9ed3a0e4217"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cia-area-buscar-por-id-inexiste",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/*",
+							" * GIVEN um id não cadastrado",
+							" * WHEN consultar por ID",
+							" * THEN retornar not-found (404)",
+							" */",
+							"",
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_server}}/cia-area/83c753c2-22e0-4a01-a6bf-b4e4df3a74e3",
+					"host": [
+						"{{url_server}}"
+					],
+					"path": [
+						"cia-area",
+						"83c753c2-22e0-4a01-a6bf-b4e4df3a74e3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cia-area-buscar-por-nome-latam",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/*",
+							" * GIVEN uma cia-area cadastra",
+							" * WHEN buscar por nome",
+							" * THEN retornar os dados da cia-area",
+							" */",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Validar se retornou apenas 1 cia-area\", function(){",
+							"    var response = pm.response.json();",
+							"    pm.expect(1).to.eq(response.length);",
+							"});",
+							"",
+							"pm.test(\"Validar dados da cia-area\", function(){",
+							"  var jsonData = pm.response.json();",
+							"  pm.expect(\"5f97340c-73e5-449f-b4cd-7be459535be4\").to.eq(jsonData[0].id);",
+							"  pm.expect(\"LATAM\").to.eq(jsonData[0].nome);",
+							"  pm.expect(\"http://127.0.0.1:8080/latam/listar-todos\").to.eq(jsonData[0].endpointListaVoos);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_server}}/cia-area/buscar-nome/LATAM",
+					"host": [
+						"{{url_server}}"
+					],
+					"path": [
+						"cia-area",
+						"buscar-nome",
+						"LATAM"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cia-area-buscar-por-nome-inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/*",
+							" * GIVEN uma cia-area nao cadastrada",
+							" * WHEN buscar por nome",
+							" * THEN retorne not-found (404)",
+							" */",
+							"pm.test(\"Deve retornar 404 quando cia-area nao encontrada\", function() {",
+							"    pm.response.to.have.status(404);",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_server}}/cia-area/buscar-nome/TAP",
+					"host": [
+						"{{url_server}}"
+					],
+					"path": [
+						"cia-area",
+						"buscar-nome",
+						"TAP"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cia-area-buscar-buscar-todos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/**",
+							" * GIVEN que existem cia-areas cadastradas",
+							" * WHEN buscar todos as cia-areas",
+							" * Then retornar as cias-areas cadastradas",
+							" */",
+							"",
+							"pm.test(\"Deve retornar 200\", function() {",
+							"    pm.response.to.have.status(200)",
+							"});",
+							"",
+							"pm.test(\"Deve retornar 3 cias areas\", function() {",
+							"    const resposta = pm.response.json();",
+							"    pm.expect(3).eq(resposta.length);",
+							"});",
+							"",
+							"pm.test(\"Deve retornar AZUL, LATAM e GOL\", function() {",
+							"    const resposta = pm.response.json();",
+							"    pm.expect(\"AZUL\").eq(resposta[0].nome);",
+							"    pm.expect(\"LATAM\").eq(resposta[1].nome);",
+							"    pm.expect(\"GOL\").eq(resposta[2].nome);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_server}}/cia-area/listar-todos",
+					"host": [
+						"{{url_server}}"
+					],
+					"path": [
+						"cia-area",
+						"listar-todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "voo-lista-todos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/* ",
+							" * GIVEN uma origem, destino e data",
+							" * WHEN consultar os voos",
+							" * Then retorna os voos existentes",
+							" */",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Deve retornar 3 voos\", function () {",
+							"    var respostaEmJson = pm.response.json();",
+							"    pm.expect(3).to.eq(respostaEmJson.length);",
+							"});",
+							"",
+							"pm.test(\"Deve retornar 2 voos azul e 1 latam\", function() {",
+							"    var resposta = pm.response.json();",
+							"    pm.expect(\"AZUL\").to.eq(resposta[0].ciaAerea.nome);",
+							"    pm.expect(\"AZUL\").to.eq(resposta[1].ciaAerea.nome);",
+							"    pm.expect(\"LATAM\").to.eq(resposta[2].ciaAerea.nome);  ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"origem\":\"rec\",\n    \"destino\":\"con\",\n    \"data\":\"2023-11-09\"\n}",
+					"raw": "{\n    \"origem\"  : \"REC\",\n    \"destino\" : \"GRU\",\n    \"data\": \"2023-09-05\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -20,55 +268,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/voo/listar-todos",
-					"protocol": "http",
+					"raw": "{{url_server}}/voo/listar-todos",
 					"host": [
-						"localhost"
+						"{{url_server}}"
 					],
-					"port": "8080",
 					"path": [
 						"voo",
 						"listar-todos"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "cia-area-listar-todos",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/cia-area/listar-todos",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"cia-area",
-						"listar-todos"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "cia-area-buscar-por-id",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/cia-area/0f8c2d20-6d56-4a4e-968e-41052143777f",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"cia-area",
-						"0f8c2d20-6d56-4a4e-968e-41052143777f"
 					]
 				}
 			},
