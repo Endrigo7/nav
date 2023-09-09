@@ -5,12 +5,13 @@ import br.com.nassau.nav.domain.exceptions.CiaAreaNaoEncontradaException;
 import br.com.nassau.nav.domain.services.CiaAreaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/cia-area")
@@ -41,5 +42,17 @@ public class CiaAreaController {
     public ResponseEntity<List<CiaArea>> listarTodos(){
         List<CiaArea> ciasArea = ciaAreaService.listarTodos();
         return ResponseEntity.ok().body(ciasArea);
+    }
+
+    @PostMapping("/")
+    public ResponseEntity<Void> salvar(@RequestBody CiaArea ciaArea) throws URISyntaxException {
+        UUID id = ciaAreaService.salvar(ciaArea);
+        URI uri = ServletUriComponentsBuilder //
+                .fromCurrentContextPath() //
+                .path("/" + id) //
+                .buildAndExpand() //
+                .toUri();
+
+        return ResponseEntity.created(uri).build();
     }
 }

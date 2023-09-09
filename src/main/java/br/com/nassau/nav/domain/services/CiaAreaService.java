@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -47,5 +48,16 @@ public class CiaAreaService {
                 .stream()
                 .map(this::toCiaArea)
                 .collect(Collectors.toList());
+    }
+
+    public UUID salvar(CiaArea ciaArea){
+        ciaArea.setId(UUID.randomUUID());
+
+        ciaAreaRepository.save( CiaAreaJpa.builder()
+                                    .id(ciaArea.getId().toString())
+                                    .nome(ciaArea.getNome())
+                                    .endpointListarVoos(ciaArea.getEndpointListaVoos())
+                                    .build() );
+        return ciaArea.getId();
     }
 }

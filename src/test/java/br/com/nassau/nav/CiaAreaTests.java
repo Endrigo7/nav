@@ -2,6 +2,7 @@ package br.com.nassau.nav;
 
 import br.com.nassau.nav.domain.entities.CiaArea;
 import io.restassured.RestAssured;
+import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -90,5 +91,44 @@ class CiaAreaTests {
                 .assertThat()
                     .statusCode(HttpStatus.NOT_FOUND.value())
                     .body("message", equalTo("Cia area não encontrada!"));
+    }
+
+    /**
+     * GIVEN que existem cia-areas cadastradas
+     * WHEN buscar todos as cia-areas
+     * Then retornar as cias-areas cadastradas
+     */
+    @Test
+    public void deveRetornaCiaAreasCadastradas(){
+        CiaArea azul = CiaArea.builder()
+                            .id(UUID.fromString("0f8c2d20-6d56-4a4e-968e-41052143777f"))
+                            .nome("AZUL")
+                            .endpointListaVoos("http://127.0.0.1:8080/azul/listar-todos")
+                        .build();
+
+        CiaArea latam = CiaArea.builder()
+                .id(UUID.fromString("5f97340c-73e5-449f-b4cd-7be459535be4"))
+                .nome("LATAM")
+                .endpointListaVoos("http://127.0.0.1:8080/latam/listar-todos")
+                .build();
+
+        CiaArea gol = CiaArea.builder()
+                .id(UUID.fromString("e5c1be28-a5d7-48d5-a7e9-c9ed3a0e4217"))
+                .nome("GOL")
+                .endpointListaVoos("http://127.0.0.1:8080/gol/listar-todos")
+                .build();
+
+
+        CiaArea[] valorEsperado = Arrays.array(azul, latam, gol);
+
+        CiaArea[] valorAtual = when()
+                                    .get("/cia-area/listar-todos")
+                            .then()
+                                    .assertThat()
+                                        .statusCode(HttpStatus.OK.value())
+                                    .extract().as(CiaArea[].class);
+
+       Assertions.assertArrayEquals(valorEsperado, valorAtual);
+
     }
 }
