@@ -1,6 +1,7 @@
 package br.com.nassau.nav.application.controllers;
 
 import br.com.nassau.nav.domain.entities.CiaArea;
+import br.com.nassau.nav.domain.exceptions.CiaAreaNaoEncontradaException;
 import br.com.nassau.nav.domain.services.CiaAreaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +31,7 @@ public class CiaAreaController {
         List<CiaArea> ciasArea = ciaAreaService.buscarPorNome(nome);
 
         if(ciasArea.isEmpty()){
-            return ResponseEntity.notFound().build();
+            throw new CiaAreaNaoEncontradaException();
         }
 
         return ResponseEntity.ok().body(ciasArea);

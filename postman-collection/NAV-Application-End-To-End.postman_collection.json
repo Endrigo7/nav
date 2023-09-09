@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a9e73225-cdb6-4135-83c7-47d6d364534d",
+		"_postman_id": "9017f148-cffd-4244-a7a8-52b4c3136c16",
 		"name": "NAV-Application-End-To-End",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -62,7 +62,14 @@
 							"",
 							"pm.test(\"Status code is 404\", function () {",
 							"    pm.response.to.have.status(404);",
-							"});"
+							"});",
+							"",
+							"pm.test(\"Mensagem deve ser Cia Aerea não encontrada\", function(){",
+							"    const resposta = pm.response.json();",
+							"    pm.expect(\"Cia area não encontrada!\").eq(resposta.message);",
+							"",
+							"});",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -141,15 +148,19 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"/*",
-							" * GIVEN uma cia-area nao cadastrada",
-							" * WHEN buscar por nome",
-							" * THEN retorne not-found (404)",
-							" */",
+							"  /*",
+							"     * GIVEN que nao existem cias areas com o nome TAP",
+							"     * WHEN um vendedor consultar por nome",
+							"     * THEN deve retornar uma lista vazia",
+							"     */",
 							"pm.test(\"Deve retornar 404 quando cia-area nao encontrada\", function() {",
 							"    pm.response.to.have.status(404);",
 							"})",
-							""
+							"",
+							"pm.test(\"Deve retornar mensagem Cia area não encontrada!\", function(){",
+							"    const resposta = pm.response.json();",
+							"    pm.expect(\"Cia area não encontrada!\").eq(resposta.message);",
+							"})"
 						],
 						"type": "text/javascript"
 					}

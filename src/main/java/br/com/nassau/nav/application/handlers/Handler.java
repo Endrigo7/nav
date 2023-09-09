@@ -23,7 +23,7 @@ public class Handler {
     @ExceptionHandler({VooNaoEncontradoException.class, CiaAreaNaoEncontradaException.class})
     public ResponseEntity<ExceptionResponse> handleNotFoundException(Exception e) {
 
-        String mensagem =  (e instanceof VooNaoEncontradoException) ? "Voo não encontrado" : "Cia area não encontrada";
+        String mensagem =  (e instanceof VooNaoEncontradoException) ? "Voo não encontrado" : "Cia area não encontrada!";
 
         ExceptionResponse exceptionResponse = new ExceptionResponse(mensagem, NOT_FOUND.value());
 
