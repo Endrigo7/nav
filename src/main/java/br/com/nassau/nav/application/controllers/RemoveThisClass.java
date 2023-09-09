@@ -10,12 +10,15 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class RemoveThisClass {
 
     @GetMapping("/azul/listar-todos")
     public ResponseEntity<List<VooInfra>> listarTodos(){
+
+        System.out.println("Executou esse metodo simulando a AZUL");
 
         VooInfra voo1 = VooInfra.builder()
                                     .numero("AZ-1234")
@@ -41,6 +44,8 @@ public class RemoveThisClass {
     @GetMapping("/latam/listar-todos")
     public ResponseEntity<List<VooInfra>> listarTodosLatam(){
 
+        System.out.println("Executou esse metodo simulando a LATAM");
+
         VooInfra voo1 = VooInfra.builder()
                 .numero("LT-9548")
                 .origem("REC")
@@ -53,5 +58,9 @@ public class RemoveThisClass {
         List<VooInfra> voos = Collections.singletonList(voo1);
 
         return ResponseEntity.ok().body(voos);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(UUID.randomUUID());
     }
 }
