@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -33,6 +34,23 @@ public class RemoveThisClass {
                                 .build();
 
         List<VooInfra> voos = Arrays.asList(voo1, voo2);
+
+        return ResponseEntity.ok().body(voos);
+    }
+
+    @GetMapping("/latam/listar-todos")
+    public ResponseEntity<List<VooInfra>> listarTodosLatam(){
+
+        VooInfra voo1 = VooInfra.builder()
+                .numero("LT-9548")
+                .origem("REC")
+                .destino("SPO")
+                .dataHora(LocalDateTime.now())
+                .valor(new BigDecimal(850))
+                .build();
+
+
+        List<VooInfra> voos = Collections.singletonList(voo1);
 
         return ResponseEntity.ok().body(voos);
     }

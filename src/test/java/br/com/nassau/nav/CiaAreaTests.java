@@ -1,7 +1,6 @@
 package br.com.nassau.nav;
 
 import br.com.nassau.nav.domain.entities.CiaArea;
-import com.github.tomakehurst.wiremock.junit5.WireMockTest;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,7 +10,6 @@ import java.util.UUID;
 import static io.restassured.RestAssured.*;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-@WireMockTest
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class CiaAreaTests {
 
