@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -23,31 +24,6 @@ public class VooService {
 
     @Value("${valor.comissao:1.2}")
     private String valorComissao;
-
-    /*
-     * este é um metodo temporario até a chamada aos
-     * outros microservices estarem prontas
-     */
-
-    private String builderCodigoVoo(CiaArea ciaArea){
-        String codigoCiaArea = ciaArea.getNome().substring(0, 2);
-        String numeroVoo = String.format("%04d", new Random().nextInt(9999));
-        return codigoCiaArea + "-" + numeroVoo;
-    }
-
-    private Voo builderVoo(CiaArea ciaArea, BuscarVoo buscarVoo){
-        BigDecimal valorVoo = new BigDecimal("100.10").setScale(2, RoundingMode.HALF_EVEN);
-        BigDecimal valorComissao = new BigDecimal("1.2").setScale(2, RoundingMode.HALF_EVEN);
-
-        return Voo.builder()
-                .ciaAerea(ciaArea)
-                .numero(builderCodigoVoo(ciaArea))
-                .origem(buscarVoo.getOrigem())
-                .destino(buscarVoo.getDestino())
-                .valorCiaArea(valorVoo)
-                .valorNav(valorVoo.multiply(valorComissao))
-                .build();
-    }
 
     public List<Voo> listarTodosOsVoos(BuscarVoo buscarVoo){
         List<Voo> voos = new ArrayList<>();
