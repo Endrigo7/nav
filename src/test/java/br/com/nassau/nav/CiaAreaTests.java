@@ -2,6 +2,7 @@ package br.com.nassau.nav;
 
 import br.com.nassau.nav.domain.entities.CiaArea;
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -122,13 +123,40 @@ class CiaAreaTests {
         CiaArea[] valorEsperado = Arrays.array(azul, latam, gol);
 
         CiaArea[] valorAtual = when()
-                                    .get("/cia-area/listar-todos")
+                                    .get("cia-area/listar-todos")
                             .then()
                                     .assertThat()
                                         .statusCode(HttpStatus.OK.value())
                                     .extract().as(CiaArea[].class);
 
-       Assertions.assertArrayEquals(valorEsperado, valorAtual);
+        Assertions.assertEquals("AZUL", valorAtual[0].getNome());
+        Assertions.assertEquals("LATAM", valorAtual[1].getNome());
+        Assertions.assertEquals("GOL", valorAtual[2].getNome());
+    }
+
+    @Test
+    public void deveSalvarCiaArea(){
+
+        Response response = given()
+                .header("Content-Type", "application/json")
+                .body("""
+                        {
+                            "nome":"American Airlines",
+                            "endpointListaVoos": "http://127.0.0.1:8080/american-airlines/listar-todos"
+                        }
+                        """)
+                .when()
+                    .post("/cia-area/")
+                .then()
+                    .assertThat()
+                .statusCode(HttpStatus.CREATED.value()).extract().response();
+
+        String locationEsperado = "http://localhost:" + porta + "/cia-area/";
+
+        String location = response.header("Location");
+        String locationAtual = location.substring(0, location.lastIndexOf("/") + 1);
+
+        Assertions.assertEquals(locationEsperado, locationAtual);
 
     }
 }

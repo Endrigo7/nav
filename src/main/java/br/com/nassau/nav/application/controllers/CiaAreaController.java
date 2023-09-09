@@ -49,7 +49,7 @@ public class CiaAreaController {
         UUID id = ciaAreaService.salvar(ciaArea);
         URI uri = ServletUriComponentsBuilder //
                 .fromCurrentContextPath() //
-                .path("/" + id) //
+                .path("/cia-area/" + id) //
                 .buildAndExpand() //
                 .toUri();
 
