@@ -9,7 +9,7 @@
 			"name": "cia-aerea",
 			"item": [
 				{
-					"name": "cia-area-buscar-por-id-gol",
+					"name": "cia-aerea-buscar-por-id-gol",
 					"event": [
 						{
 							"listen": "test",
@@ -38,12 +38,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url_server}}/cia-area/e5c1be28-a5d7-48d5-a7e9-c9ed3a0e4217",
+							"raw": "{{url_server}}/cia-aerea/e5c1be28-a5d7-48d5-a7e9-c9ed3a0e4217",
 							"host": [
 								"{{url_server}}"
 							],
 							"path": [
-								"cia-area",
+								"cia-aerea",
 								"e5c1be28-a5d7-48d5-a7e9-c9ed3a0e4217"
 							]
 						}
@@ -51,7 +51,7 @@
 					"response": []
 				},
 				{
-					"name": "cia-area-buscar-por-id-inexiste",
+					"name": "cia-aerea-buscar-por-id-inexiste",
 					"event": [
 						{
 							"listen": "test",
@@ -69,7 +69,7 @@
 									"",
 									"pm.test(\"Mensagem deve ser Cia Aerea não encontrada\", function(){",
 									"    const resposta = pm.response.json();",
-									"    pm.expect(\"Cia area não encontrada!\").eq(resposta.message);",
+									"    pm.expect(\"Cia aerea não encontrada!\").eq(resposta.message);",
 									"",
 									"});",
 									""
@@ -82,12 +82,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url_server}}/cia-area/83c753c2-22e0-4a01-a6bf-b4e4df3a74e3",
+							"raw": "{{url_server}}/cia-aerea/83c753c2-22e0-4a01-a6bf-b4e4df3a74e3",
 							"host": [
 								"{{url_server}}"
 							],
 							"path": [
-								"cia-area",
+								"cia-aerea",
 								"83c753c2-22e0-4a01-a6bf-b4e4df3a74e3"
 							]
 						}
@@ -95,28 +95,28 @@
 					"response": []
 				},
 				{
-					"name": "cia-area-buscar-por-nome-latam",
+					"name": "cia-aerea-buscar-por-nome-latam",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
 									"/*",
-									" * GIVEN uma cia-area cadastra",
+									" * GIVEN uma cia-aerea cadastra",
 									" * WHEN buscar por nome",
-									" * THEN retornar os dados da cia-area",
+									" * THEN retornar os dados da cia-aerea",
 									" */",
 									"",
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
-									"pm.test(\"Validar se retornou apenas 1 cia-area\", function(){",
+									"pm.test(\"Validar se retornou apenas 1 cia-aerea\", function(){",
 									"    var response = pm.response.json();",
 									"    pm.expect(1).to.eq(response.length);",
 									"});",
 									"",
-									"pm.test(\"Validar dados da cia-area\", function(){",
+									"pm.test(\"Validar dados da cia-aerea\", function(){",
 									"  var jsonData = pm.response.json();",
 									"  pm.expect(\"5f97340c-73e5-449f-b4cd-7be459535be4\").to.eq(jsonData[0].id);",
 									"  pm.expect(\"LATAM\").to.eq(jsonData[0].nome);",
@@ -131,12 +131,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url_server}}/cia-area/buscar-nome/LATAM",
+							"raw": "{{url_server}}/cia-aerea/buscar-nome/LATAM",
 							"host": [
 								"{{url_server}}"
 							],
 							"path": [
-								"cia-area",
+								"cia-aerea",
 								"buscar-nome",
 								"LATAM"
 							]
@@ -145,24 +145,24 @@
 					"response": []
 				},
 				{
-					"name": "cia-area-buscar-por-nome-inexistente",
+					"name": "cia-aerea-buscar-por-nome-inexistente",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
 									"  /*",
-									"     * GIVEN que nao existem cias areas com o nome TAP",
+									"     * GIVEN que nao existem cias aereas com o nome TAP",
 									"     * WHEN um vendedor consultar por nome",
 									"     * THEN deve retornar uma lista vazia",
 									"     */",
-									"pm.test(\"Deve retornar 404 quando cia-area nao encontrada\", function() {",
+									"pm.test(\"Deve retornar 404 quando cia-aerea nao encontrada\", function() {",
 									"    pm.response.to.have.status(404);",
 									"})",
 									"",
-									"pm.test(\"Deve retornar mensagem Cia area não encontrada!\", function(){",
+									"pm.test(\"Deve retornar mensagem Cia aerea não encontrada!\", function(){",
 									"    const resposta = pm.response.json();",
-									"    pm.expect(\"Cia area não encontrada!\").eq(resposta.message);",
+									"    pm.expect(\"Cia aerea não encontrada!\").eq(resposta.message);",
 									"})"
 								],
 								"type": "text/javascript"
@@ -173,12 +173,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url_server}}/cia-area/buscar-nome/TAP",
+							"raw": "{{url_server}}/cia-aerea/buscar-nome/TAP",
 							"host": [
 								"{{url_server}}"
 							],
 							"path": [
-								"cia-area",
+								"cia-aerea",
 								"buscar-nome",
 								"TAP"
 							]
@@ -187,16 +187,16 @@
 					"response": []
 				},
 				{
-					"name": "cia-area-buscar-buscar-todos",
+					"name": "cia-aerea-buscar-buscar-todos",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
 									"/**",
-									" * GIVEN que existem cia-areas cadastradas",
-									" * WHEN buscar todos as cia-areas",
-									" * Then retornar as cias-areas cadastradas",
+									" * GIVEN que existem cia-aereas cadastradas",
+									" * WHEN buscar todos as cia-aereas",
+									" * Then retornar as cias-aereas cadastradas",
 									" */",
 									"",
 									"pm.test(\"Deve retornar 200\", function() {",
@@ -205,7 +205,7 @@
 									"",
 									"/** esse teste está sendo removido pq falha quando cadastros novos são realizados */",
 									"/*",
-									"pm.test(\"Deve retornar 3 cias areas\", function() {",
+									"pm.test(\"Deve retornar 3 cias aereas\", function() {",
 									"    const resposta = pm.response.json();",
 									"    pm.expect(3).eq(resposta.length);",
 									"});",
@@ -227,12 +227,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url_server}}/cia-area/listar-todos",
+							"raw": "{{url_server}}/cia-aerea/listar-todos",
 							"host": [
 								"{{url_server}}"
 							],
 							"path": [
-								"cia-area",
+								"cia-aerea",
 								"listar-todos"
 							]
 						}
@@ -240,7 +240,7 @@
 					"response": []
 				},
 				{
-					"name": "cia-area-salvar-american-airlines",
+					"name": "cia-aerea-salvar-american-airlines",
 					"event": [
 						{
 							"listen": "test",
@@ -252,7 +252,7 @@
 									"",
 									"pm.test(\"Location deve ser devolvida\", function() {",
 									"    const location = pm.response.headers.get(\"Location\");",
-									"    const locationEsperado = \"http://localhost:8080/cia-area/\";",
+									"    const locationEsperado = \"http://localhost:8080/cia-aerea/\";",
 									"    const locationAtual = location.substring(0, location.lastIndexOf(\"/\") + 1);",
 									"    pm.expect(locationEsperado).eq(locationAtual);",
 									"});",
@@ -275,12 +275,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{url_server}}/cia-area/",
+							"raw": "{{url_server}}/cia-aerea/",
 							"host": [
 								"{{url_server}}"
 							],
 							"path": [
-								"cia-area",
+								"cia-aerea",
 								""
 							]
 						}

@@ -1,6 +1,6 @@
 package br.com.nassau.nav.application.handlers;
 
-import br.com.nassau.nav.domain.exceptions.CiaAreaNaoEncontradaException;
+import br.com.nassau.nav.domain.exceptions.CiaAereaNaoEncontradaException;
 import br.com.nassau.nav.domain.exceptions.VooNaoEncontradoException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -20,10 +20,10 @@ public class Handler {
         return new ResponseEntity<>(exceptionResponse, INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler({VooNaoEncontradoException.class, CiaAreaNaoEncontradaException.class})
+    @ExceptionHandler({VooNaoEncontradoException.class, CiaAereaNaoEncontradaException.class})
     public ResponseEntity<ExceptionResponse> handleNotFoundException(Exception e) {
 
-        String mensagem =  (e instanceof VooNaoEncontradoException) ? "Voo não encontrado" : "Cia area não encontrada!";
+        String mensagem =  (e instanceof VooNaoEncontradoException) ? "Voo não encontrado" : "Cia aerea não encontrada!";
 
         ExceptionResponse exceptionResponse = new ExceptionResponse(mensagem, NOT_FOUND.value());
 

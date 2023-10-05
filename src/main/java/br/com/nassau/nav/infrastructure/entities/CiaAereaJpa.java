@@ -11,12 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Data
-@Table(name = "CIA_AREA")
+@Table(name = "CIA_AEREA")
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CiaAreaJpa {
+public class CiaAereaJpa {
     @Id
     private String id;
 

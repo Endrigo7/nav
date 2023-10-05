@@ -1,6 +1,6 @@
 package br.com.nassau.nav;
 
-import br.com.nassau.nav.domain.entities.CiaArea;
+import br.com.nassau.nav.domain.entities.CiaAerea;
 import br.com.nassau.nav.domain.entities.Voo;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
@@ -108,19 +108,19 @@ public class VooTests {
                                 ]
                                 """)));
 
-        CiaArea azul = CiaArea.builder()
+        CiaAerea azul = CiaAerea.builder()
                 .id(UUID.fromString("0f8c2d20-6d56-4a4e-968e-41052143777f"))
                 .nome("AZUL")
                 .endpointListaVoos( "http://127.0.0.1:8080/azul/listar-todos")
                 .build();
 
-        CiaArea latam = CiaArea.builder()
+        CiaAerea latam = CiaAerea.builder()
                 .id(UUID.fromString("5f97340c-73e5-449f-b4cd-7be459535be4"))
                 .nome("LATAM")
                 .endpointListaVoos( "http://127.0.0.1:8080/latam/listar-todos")
                 .build();
 
-        CiaArea gol = CiaArea.builder()
+        CiaAerea gol = CiaAerea.builder()
                 .id(UUID.fromString("e5c1be28-a5d7-48d5-a7e9-c9ed3a0e4217"))
                 .nome("GOL")
                 .endpointListaVoos( "http://127.0.0.1:8080/gol/listar-todos")
@@ -132,7 +132,7 @@ public class VooTests {
                 .origem("REC")
                 .destino("GRU")
                 .dataHora(LocalDateTime.of(2023, 9, 8, 20, 48, 7))
-                .valorCiaArea(new BigDecimal(100))
+                .valorCiaAerea(new BigDecimal(100))
                 .valorNav(new BigDecimal(120).setScale(2, RoundingMode.HALF_EVEN))
                 .build();
 
@@ -142,7 +142,7 @@ public class VooTests {
                 .origem("REC")
                 .destino("GRU")
                 .dataHora(LocalDateTime.of(2023, 9, 8, 20, 48, 7))
-                .valorCiaArea(new BigDecimal(250))
+                .valorCiaAerea(new BigDecimal(250))
                 .valorNav(new BigDecimal(300).setScale(2, RoundingMode.HALF_EVEN))
                 .build();
 
@@ -152,7 +152,7 @@ public class VooTests {
                 .origem("REC")
                 .destino("GRU")
                 .dataHora(LocalDateTime.of(2023, 9, 8, 20, 48, 7))
-                .valorCiaArea(new BigDecimal(400))
+                .valorCiaAerea(new BigDecimal(400))
                 .valorNav(new BigDecimal(480).setScale(2, RoundingMode.HALF_EVEN))
                 .build();
 
@@ -162,7 +162,7 @@ public class VooTests {
                 .origem("REC")
                 .destino("GRU")
                 .dataHora(LocalDateTime.of(2023, 9, 8, 20, 48, 7))
-                .valorCiaArea(new BigDecimal(200))
+                .valorCiaAerea(new BigDecimal(200))
                 .valorNav(new BigDecimal(240).setScale(2, RoundingMode.HALF_EVEN))
                 .build();
 

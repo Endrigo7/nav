@@ -1,9 +1,9 @@
 package br.com.nassau.nav.domain.services;
 
 import br.com.nassau.nav.domain.entities.BuscarVoo;
-import br.com.nassau.nav.domain.entities.CiaArea;
+import br.com.nassau.nav.domain.entities.CiaAerea;
 import br.com.nassau.nav.domain.entities.Voo;
-import br.com.nassau.nav.infrastructure.services.VooPorCiaAreaService;
+import br.com.nassau.nav.infrastructure.services.VooPorCiaAereaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -16,10 +16,10 @@ import java.util.*;
 public class VooService {
 
     @Autowired
-    private CiaAreaService ciaAreaService;
+    private CiaAereaService ciaAereaService;
 
     @Autowired
-    private VooPorCiaAreaService vooPorCiaAreaService;
+    private VooPorCiaAereaService vooPorCiaAereaService;
 
     @Value("${valor.comissao:1.2}")
     private String valorComissao;
@@ -28,11 +28,11 @@ public class VooService {
         List<Voo> voos = new ArrayList<>();
 
 
-        for (CiaArea ciaArea : ciaAreaService.listarTodos()) {
-            List<Voo> voosEncontrados = vooPorCiaAreaService.getVoo(ciaArea);
+        for (CiaAerea ciaAerea : ciaAereaService.listarTodos()) {
+            List<Voo> voosEncontrados = vooPorCiaAereaService.getVoo(ciaAerea);
             voosEncontrados.forEach(System.out::println);
 
-            voosEncontrados.forEach(voo -> voo.setValorNav(voo.getValorCiaArea()
+            voosEncontrados.forEach(voo -> voo.setValorNav(voo.getValorCiaAerea()
                                                             .multiply(new BigDecimal(valorComissao)
                                                                         .setScale(2, RoundingMode.HALF_EVEN))));
 

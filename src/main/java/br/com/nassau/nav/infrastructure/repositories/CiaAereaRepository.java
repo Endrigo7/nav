@@ -1,14 +1,14 @@
 package br.com.nassau.nav.infrastructure.repositories;
 
-import br.com.nassau.nav.infrastructure.entities.CiaAreaJpa;
+import br.com.nassau.nav.infrastructure.entities.CiaAereaJpa;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface CiaAreaRepository extends JpaRepository<CiaAreaJpa, String> {
+public interface CiaAereaRepository extends JpaRepository<CiaAereaJpa, String> {
 
-    List<CiaAreaJpa> findByNome(String nome);
+    List<CiaAereaJpa> findByNome(String nome);
 
 }

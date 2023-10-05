@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Voo {
 
-    private CiaArea ciaAerea;
+    private CiaAerea ciaAerea;
 
     private String numero;
 
@@ -24,7 +24,7 @@ public class Voo {
 
     private LocalDateTime dataHora;
 
-    private BigDecimal valorCiaArea;
+    private BigDecimal valorCiaAerea;
 
     private BigDecimal valorNav;
 

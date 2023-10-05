@@ -11,7 +11,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CiaArea {
+public class CiaAerea {
 
     private UUID id;
 
